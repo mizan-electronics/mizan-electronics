@@ -1,0 +1,246 @@
+"use client";
+
+import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
+import { Star, Quote } from "lucide-react";
+import { useEffect, useState } from "react";
+
+const testimonials = [
+  {
+    name: "Rahim Uddin",
+    role: "Homeowner • Dhaka",
+    image:
+      "https://www.shutterstock.com/image-photo/happy-smiling-bangladesh-man-standing-600nw-391162879.jpg",
+    rating: 5,
+    text: "Fast installation and very professional service. Cooling performance is excellent even in peak summer.",
+  },
+  {
+    name: "Nusrat Jahan",
+    role: "Apartment Owner",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4XsXWm9yquQq6ZDelFw5CPJiaoAXdrcGHJQ&s",
+    rating: 5,
+    text: "Highly satisfied with their AC servicing. Technician was polite and explained everything clearly.",
+  },
+  {
+    name: "Tanvir Ahmed",
+    role: "Office Manager",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKGwh0FDKjDqR8D7vkarFhMQNcDC9YfiMwtQ&s",
+    rating: 4.9,
+    text: "We installed multiple inverter ACs for our office. Great pricing and after-sales support.",
+  },
+  {
+    name: "Farhana Islam",
+    role: "Villa Owner",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH-5qOOZPXuqCvuaqFBMPS20cdn8xEDxwNsw&s",
+    rating: 5,
+    text: "Excellent experience from purchase to installation. Highly recommended.",
+  },
+  {
+    name: "Imran Hossain",
+    role: "Retail Shop Owner",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbtdGT_m-yNG88PNncgdpFlEfs7Rchm8BWMQ&s",
+    rating: 4.8,
+    text: "Energy efficiency is noticeably better. Reduced electricity bills within the first month.",
+  },
+  {
+    name: "Sadia Rahman",
+    role: "Flat Owner • Uttara",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDz0Iqpag_veZCpLoAAzKQujcyAoJaEYyrmA&s",
+    rating: 5,
+    text: "Prompt delivery and clean installation. The technician was very careful and skilled.",
+  },
+  {
+    name: "Mahmudul Hasan",
+    role: "Restaurant Manager",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_YLGuqACiYwa7swk-r9CuFTTp2unzzqpt2A&s",
+    rating: 4.9,
+    text: "Cooling is powerful even during rush hours. Perfect for commercial usage.",
+  },
+  {
+    name: "Tahmina Akter",
+    role: "Interior Designer",
+    image:
+      "https://img.freepik.com/free-photo/indian-woman-posing-cute-stylish-outfit-camera-smiling_482257-122351.jpg?semt=ais_hybrid&w=740&q=80",
+    rating: 5,
+    text: "Sleek design and silent operation. Matches modern interiors beautifully.",
+  },
+  {
+    name: "Arif Khan",
+    role: "Tech Consultant",
+    image:
+      "https://media.istockphoto.com/id/1156714752/photo/portrait-of-an-indian-corporate-male-executive.jpg?s=612x612&w=0&k=20&c=gVrjy68_xvQg0_x0EM3hIxC-0Mu2oXj8BGgfDBspL-0=",
+    rating: 4.8,
+    text: "Smart features work flawlessly. App control and temperature accuracy are impressive.",
+  },
+];
+
+const clients = [
+  "/brands/walton.png",
+  "/brands/gree.webp",
+  "/brands/lg.png",
+  "/brands/singer.png",
+  "/brands/haier.png",
+  "/brands/walton.png",
+];
+
+export default function TestimonialsClients() {
+  const [index, setIndex] = useState(0);
+  const [perView, setPerView] = useState(3);
+
+  useEffect(() => {
+    const updatePerView = () => {
+      if (window.innerWidth < 640) setPerView(1);
+      else if (window.innerWidth < 1024) setPerView(2);
+      else setPerView(3);
+    };
+    updatePerView();
+    window.addEventListener("resize", updatePerView);
+    return () => window.removeEventListener("resize", updatePerView);
+  }, []);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setIndex((p) => (p + perView) % testimonials.length);
+    }, 4800);
+    return () => clearInterval(t);
+  }, [perView]);
+
+  const visible = Array.from({ length: perView }).map(
+    (_, i) => testimonials[(index + i) % testimonials.length]
+  );
+
+  const totalTabs = Math.ceil(testimonials.length / perView);
+  const activeTab = Math.floor(index / perView);
+
+  return (
+    <section className="relative py-24 overflow-hidden">
+      <motion.div
+        className="absolute -z-10 left-[-25%] top-[10%] h-130 w-130 rounded-full bg-indigo-500/20 blur-[160px]"
+        animate={{ x: [0, 120, 0], y: [0, -80, 0] }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+      />
+
+      <motion.div
+        className="absolute -z-10 right-[-25%] bottom-[0%] h-130 w-130 rounded-full bg-[#e18b94]/20 blur-[160px]"
+        animate={{ x: [0, -120, 0], y: [0, 80, 0] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      />
+
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="mb-16 text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 px-4 py-1.5 text-sm font-medium text-white shadow-lg">
+            <Quote className="h-4 w-4" />
+            Trusted by Thousands
+          </span>
+          <h2 className="mt-4 text-3xl md:text-4xl font-extrabold">
+            What Our Customers Say
+          </h2>
+          <p className="mt-3 text-neutral-600 dark:text-neutral-400">
+            Real experiences from people who trust our products & services
+          </p>
+        </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -40 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {visible.map((t, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -8 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="
+                  relative rounded-3xl p-8
+                  bg-white/70 dark:bg-neutral-900/50
+                  backdrop-blur-xl
+                  border border-black/5 dark:border-white/10
+                  shadow-[0_25px_70px_-35px_rgba(0,0,0,0.35)]
+                "
+              >
+                <Quote className="absolute right-6 top-6 h-7 w-7 text-indigo-500/20" />
+
+                <div className="mb-5 flex items-center gap-5">
+                  <div className="relative h-24 w-24 rounded-full bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 p-0.5">
+                    <div className="relative h-full w-full overflow-hidden rounded-full bg-white">
+                      <Image src={t.image} alt={t.name} fill className="object-cover" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-2xl font-bold">{t.name}</p>
+                    <p className="text-base text-neutral-500">{t.role}</p>
+                  </div>
+                </div>
+
+                <div className="mb-4 flex items-center gap-1 text-amber-500">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-amber-400" />
+                  ))}
+                  <span className="ml-2 text-sm font-medium text-neutral-500">
+                    {t.rating}
+                  </span>
+                </div>
+
+                <p className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                  “{t.text}”
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="mt-10 flex justify-center gap-2">
+          {Array.from({ length: totalTabs }).map((_, i) => {
+            const active =
+              i === activeTab &&
+              (i % 3 === 0
+                ? "bg-pink-500 shadow-[0_0_16px_rgba(236,72,153,0.9)]"
+                : i % 3 === 1
+                ? "bg-indigo-500 shadow-[0_0_16px_rgba(99,102,241,0.9)]"
+                : "bg-[#e18b94] shadow-[0_0_16px_rgba(225,139,148,0.9)]");
+
+            return (
+              <div
+                key={i}
+                className={`
+                  h-1.5 rounded-full transition-all duration-500
+                  ${i === activeTab ? "w-10" : "w-5 bg-neutral-400/40"}
+                  ${active ?? ""}
+                `}
+              />
+            );
+          })}
+        </div>
+
+        <div className="mt-20">
+          <p className="mb-8 text-center text-sm font-semibold uppercase tracking-wider text-neutral-500">
+            Trusted by leading brands
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-10 opacity-80">
+            {clients.map((logo, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.08 }}
+                className="relative h-10 w-28 grayscale transition hover:grayscale-0"
+              >
+                <Image src={logo} alt="Client Logo" fill className="object-contain" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
