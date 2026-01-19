@@ -119,7 +119,7 @@ export default function TestimonialsClients() {
   const activeTab = Math.floor(index / perView);
 
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section className="relative py-14 overflow-hidden">
       <motion.div
         className="absolute -z-10 left-[-25%] top-[10%] h-130 w-130 rounded-full bg-indigo-500/20 blur-[160px]"
         animate={{ x: [0, 120, 0], y: [0, -80, 0] }}

@@ -13,7 +13,7 @@ const Footer = () => {
     return null;
   }
   return (
-    <footer className="relative pt-8 overflow-hidden w-full">
+    <footer className="relative pt-8 lg:pt-14 overflow-hidden w-full">
       <motion.div
         className="absolute -z-10 right-[-25%] bottom-[-30%] h-130 w-130 rounded-full bg-[#e18b94]/25 blur-[180px]"
         animate={{ x: [0, -140, 0], y: [0, 100, 0] }}
