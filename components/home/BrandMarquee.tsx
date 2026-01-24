@@ -20,19 +20,21 @@ function BrandMarquee() {
   const x = useMotionValue(0);
 
   return (
-    <section className="relative  pb-20 overflow-hidden">
-   <motion.div
+    <section className="relative overflow-hidden pb-12 sm:pb-16 lg:pb-20">
+      {/* background glow */}
+      <motion.div
         className="absolute -z-10 left-[20%] bottom-[-35%] h-130 w-130 rounded-full bg-[#e18b94]/20 blur-[160px]"
         animate={{ x: [0, 120, 0], y: [0, -80, 0] }}
         transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
       />
 
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-linear-to-r from-white dark:from-black to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-linear-to-l from-white dark:from-black to-transparent" />
+      {/* fade edges */}
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-14 sm:w-20 lg:w-24 bg-linear-to-r from-white dark:from-black to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-14 sm:w-20 lg:w-24 bg-linear-to-l from-white dark:from-black to-transparent" />
 
-      <div className="relative rounded-3xl py-10">
+      <div className="relative rounded-3xl py-8 sm:py-10">
         <motion.div
-          className="flex gap-14 px-10"
+          className="flex gap-8 sm:gap-12 lg:gap-14 px-6 sm:px-8 lg:px-10"
           style={{ x }}
           animate={{ x: ["0%", "-50%"] }}
           transition={{
@@ -54,7 +56,9 @@ function BrandMarquee() {
                 <div
                   className="
                     flex items-center justify-center
-                    w-40 h-22.5
+                    w-28 h-16
+                    sm:w-32 sm:h-18
+                    lg:w-40 lg:h-22.5
                     rounded-2xl
                     bg-white dark:bg-black/40
                     shadow-[0_12px_40px_-20px_rgba(0,0,0,0.35)]
@@ -63,9 +67,9 @@ function BrandMarquee() {
                   <Image
                     src={brand.logo}
                     alt={brand.name}
-                    width={120}
-                    height={70}
-                    className="object-contain"
+                    width={100}
+                    height={56}
+                    className="object-contain max-h-10 sm:max-h-12 lg:max-h-14"
                   />
                 </div>
               </motion.div>
