@@ -20,6 +20,10 @@ import logo from "@/public/mizan.png";
 import ProfileImage from "./ProfileImage";
 import MobileBottomNav from "./MobileBottomNav";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import {
+  MdHomeRepairService,
+  MdOutlineHomeRepairService,
+} from "react-icons/md";
 const Navbar = () => {
   const pathname = usePathname();
   const [dark, setDark] = useState(false);
@@ -68,6 +72,18 @@ const Navbar = () => {
                 }
                 label="Products"
                 active={pathname === "/products"}
+              />
+              <NavItem
+                href="/services"
+                icon={
+                  pathname === "/services" ? (
+                    <MdHomeRepairService />
+                  ) : (
+                    <MdOutlineHomeRepairService />
+                  )
+                }
+                label="Services"
+                active={pathname === "/services"}
               />
 
               <NavItem
@@ -126,15 +142,6 @@ const Navbar = () => {
                 }
                 label="Cart"
                 active={pathname === "/cart"}
-              />
-
-              <NavItem
-                href="/about"
-                icon={
-                  pathname === "/about" ? <FaCircleExclamation /> : <FiInfo />
-                }
-                label="About"
-                active={pathname === "/about"}
               />
 
               <NavItem

@@ -62,6 +62,7 @@ const Footer = () => {
               <ul className="space-y-3 text-sm font-medium">
                 <FooterLink href="/" label="Home" />
                 <FooterLink href="/products" label="Products" />
+                <FooterLink href="/services" label="Services" />
                 <FooterLink href="/about" label="About Us" />
                 <FooterLink href="/contact" label="Contact" />
               </ul>

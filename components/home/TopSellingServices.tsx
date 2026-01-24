@@ -10,6 +10,7 @@ import {
   Zap,
   ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
@@ -71,10 +72,12 @@ export default function TopSellingServices() {
             </h2>
           </div>
 
-          <Button size="lg" className="group cursor-pointer">
-            View All Services
-            <ArrowRight className="ml-2 h-5 w-5 transition group-hover:translate-x-1.5" />
-          </Button>
+          <Link href="/services">
+            <Button size="lg" className="group cursor-pointer">
+              View All Services
+              <ArrowRight className="ml-2 h-5 w-5 transition group-hover:translate-x-1.5" />
+            </Button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
