@@ -17,34 +17,34 @@ const MobileBottomNav = () => {
   return (
     <div className="fixed bottom-1 left-0 right-0 z-50 md:hidden">
       <div className="mx-auto w-ull px-2 ">
-        <div className="flex  justify-between rounded-full bg-white/90 border dark:border-neutral-200 border-neutral-100 px-6 w-full pt-3 pb-1 shadow-xl backdrop-blur-xl dark:bg-black/90">
+        <div className="flex  justify-between rounded-full  bg-white/90 border dark:border-neutral-200 border-neutral-100 px-6 w-full pt-3 pb-1 shadow-xl backdrop-blur-xl dark:bg-black/90">
           <Item
             href="/"
             label="Home"
             active={pathname === "/"}
-            icon={<HiOutlineHome />}
-            iconActive={<HiHome />}
+            icon={<HiOutlineHome  className="text-lg"/>}
+            iconActive={<HiHome  className="text-lg"/>}
           />
           <Item
             href="/products"
             label="Products"
             active={pathname === "/products"}
-            icon={<BsBoxSeam />}
-            iconActive={<BsBoxSeamFill />}
+            icon={<BsBoxSeam  className="text-lg"/>}
+            iconActive={<BsBoxSeamFill  className="text-lg"/>}
           />
           <Item
             href="/about"
             label="About"
             active={pathname === "/about"}
-            icon={<FiInfo />}
-            iconActive={<FaCircleExclamation />}
+            icon={<FiInfo  className="text-lg"/>}
+            iconActive={<FaCircleExclamation  className="text-lg"/>}
           />
           <Item
             href="/contact"
             label="Contact"
             active={pathname === "/contact"}
-            icon={<FiPhone />}
-            iconActive={<FaPhoneAlt />}
+            icon={<FiPhone  className="text-lg"/>}
+            iconActive={<FaPhoneAlt  className="text-lg"/>}
           />
         </div>
       </div>
