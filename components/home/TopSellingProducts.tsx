@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { ArrowDown, Star } from "lucide-react";
+import { ArrowDown, Heart, ShoppingCart, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function TopSellingProducts() {
@@ -151,24 +151,20 @@ export default function TopSellingProducts() {
 
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-12 items-center flex-col flex justify-center ">
-       
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
             <span className="bg-linear-to-r from-pink-400 via-purple-400 to-indigo-500 bg-clip-text text-transparent">
-             Top Selling Products
+              Top Selling Products
             </span>
           </h1>
-            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
-              Most loved ACs with the highest ratings & best value
-            </p>
-        
-
-      
+          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            Most loved ACs with the highest ratings & best value
+          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {topSellingProducts.map((p, i) => {
             const discount = Math.round(
-              ((p.oldPrice - p.price) / p.oldPrice) * 100
+              ((p.oldPrice - p.price) / p.oldPrice) * 100,
             );
 
             return (
@@ -215,18 +211,36 @@ export default function TopSellingProducts() {
                     </span>
                   </div>
 
-                  <div className="mt-2 flex items-center gap-2">
-                    <span className="text-lg font-bold text-indigo-600">
-                      ৳ {p.price.toLocaleString()}
-                    </span>
-                    <span className="text-sm line-through text-neutral-400">
-                      ৳ {p.oldPrice.toLocaleString()}
-                    </span>
+                  <div className="mt-2 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-bold text-indigo-600">
+                        ৳ {p.price.toLocaleString()}
+                      </span>
+                      <span className="text-sm line-through text-neutral-400">
+                        ৳ {p.oldPrice.toLocaleString()}
+                      </span>
+                    </div>
+
+                    <div className="flex gap-2">
+                      <button
+                        className="rounded-full p-2 bg-white shadow cursor-pointer transition hover:scale-105"
+                        aria-label="Add to wishlist"
+                      >
+                        <Heart className="h-4 w-4 text-neutral-600" />
+                      </button>
+
+                      <button
+                        className="rounded-full p-2 bg-white shadow cursor-pointer transition hover:scale-105"
+                        aria-label="Add to cart"
+                      >
+                        <ShoppingCart className="h-4 w-4 text-neutral-600" />
+                      </button>
+                    </div>
                   </div>
                 </div>
 
                 <button
-                 className="
+                  className="
                     w-full cursor-pointer rounded-b-xl py-2.5 text-sm font-semibold
                         text-indigo-600 bg-white
                         shadow-[0_0_12px_rgba(99,102,241,0.25)]
@@ -242,12 +256,11 @@ export default function TopSellingProducts() {
           })}
         </div>
 
-         <div className="mt-14 flex justify-center">
-            <motion.button
-             
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.96 }}
-              className="
+        <div className="mt-14 flex justify-center">
+          <motion.button
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.96 }}
+            className="
                     group inline-flex items-center gap-2
                     rounded-full px-8 py-3
                     bg-indigo-600 text-white text-sm font-semibold
@@ -255,11 +268,11 @@ export default function TopSellingProducts() {
                     transition-all duration-300
                     hover:bg-indigo-500  cursor-pointer  hover:shadow-[0_0_60px_rgba(99,102,241,0.7)]
                 "
-            >
-              Show More
-              <ArrowDown className="h-4 w-4 transition group-hover:translate-y-1" />
-            </motion.button>
-          </div>
+          >
+            Show More
+            <ArrowDown className="h-4 w-4 transition group-hover:translate-y-1" />
+          </motion.button>
+        </div>
       </div>
     </section>
   );

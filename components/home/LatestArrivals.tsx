@@ -3,7 +3,8 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import { memo, useState } from "react";
-import { Star, Zap, ShieldCheck, ArrowDown } from "lucide-react";
+import { Star, Zap, ShieldCheck, ArrowDown, Heart, ShoppingCart } from "lucide-react";
+import Link from "next/link";
 
 const products = [
   {
@@ -148,6 +149,11 @@ const products = [
 
 function LatestArrivals() {
   const [visible, setVisible] = useState(12);
+  const slugify = (text: string) =>
+    text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
 
   return (
     <section className="relative py-20 overflow-hidden">
@@ -179,11 +185,11 @@ function LatestArrivals() {
               transition={{ delay: i * 0.04 }}
               whileHover={{ y: -8 }}
               className="
-                    group rounded-2xl border border-black/5 dark:border-white/10
-                    bg-neutral-50 dark:bg-neutral-900/50
-                    backdrop-blur-xl overflow-hidden
-                    shadow-[0_16px_48px_-28px_rgba(0,0,0,0.35)]
-                "
+                      group rounded-2xl border border-black/5 dark:border-white/10
+                      bg-neutral-50 dark:bg-neutral-900/50
+                      backdrop-blur-xl overflow-hidden
+                      shadow-[0_16px_48px_-28px_rgba(0,0,0,0.35)]
+                  "
             >
               <div className="relative  h-64 bg-white  w-full">
                 <Image
@@ -194,43 +200,64 @@ function LatestArrivals() {
                 />
               </div>
 
-              <div className="p-4">
-                <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">
-                  {product.name}
-                </h3>
+        <div className="p-4">
+  <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">
+    {product.name}
+  </h3>
 
-                <div className="mt-1.5 flex items-center gap-1 text-yellow-500">
-                  <Star className="h-4 w-4 fill-yellow-500" />
-                  <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">
-                    {product.rating}
-                  </span>
-                </div>
+  <div className="mt-1.5 flex items-center gap-1 text-yellow-500">
+    <Star className="h-4 w-4 fill-yellow-500" />
+    <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">
+      {product.rating}
+    </span>
+  </div>
 
-                <p className="mt-2.5 text-lg font-bold text-neutral-900 dark:text-white">
-                  {product.price}
-                </p>
+  <div className="mt-2.5 flex items-center justify-between">
+    <p className="text-lg font-bold text-neutral-900 dark:text-white">
+      {product.price}
+    </p>
 
-                <div className="mt-3 flex items-center gap-3 text-xs text-neutral-600 dark:text-neutral-400">
-                  <span className="flex items-center gap-1">
-                    <Zap className="h-3 w-3 text-indigo-500" /> Inverter
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <ShieldCheck className="h-3 w-3 text-indigo-500" /> Warranty
-                  </span>
-                </div>
-              </div>
-              <button
+    <div className="flex gap-2">
+      <button
+        className="rounded-full p-2 bg-white shadow cursor-pointer transition hover:scale-105"
+        aria-label="Add to wishlist"
+      >
+        <Heart className="h-4 w-4 text-neutral-600" />
+      </button>
+
+      <button
+        className="rounded-full p-2 bg-white shadow cursor-pointer transition hover:scale-105"
+        aria-label="Add to cart"
+      >
+        <ShoppingCart className="h-4 w-4 text-neutral-600" />
+      </button>
+    </div>
+  </div>
+
+  <div className="mt-3 flex items-center gap-3 text-xs text-neutral-600 dark:text-neutral-400">
+    <span className="flex items-center gap-1">
+      <Zap className="h-3 w-3 text-indigo-500" /> Inverter
+    </span>
+    <span className="flex items-center gap-1">
+      <ShieldCheck className="h-3 w-3 text-indigo-500" /> Warranty
+    </span>
+  </div>
+</div>
+
+
+              <Link
+                href={`/products/${slugify(product.name)}`}
                 className="
-                    w-full cursor-pointer rounded-b-xl py-2.5 text-sm font-semibold
-                        text-indigo-600 bg-white
-                        shadow-[0_0_12px_rgba(99,102,241,0.25)]
-                        transition-all duration-300
-                        hover:font-bold hover:shadow-[0_0_48px_rgba(99,102,241,0.65)]
-                        hover:-translate-y-0.5
-                    "
+      w-full block text-center cursor-pointer rounded-b-xl py-2.5 text-sm font-semibold
+      text-indigo-600 bg-white
+      shadow-[0_0_12px_rgba(99,102,241,0.25)]
+      transition-all duration-300
+      hover:font-bold hover:shadow-[0_0_48px_rgba(99,102,241,0.65)]
+      hover:-translate-y-0.5
+    "
               >
                 View Details
-              </button>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -244,13 +271,13 @@ function LatestArrivals() {
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.96 }}
               className="
-                    group inline-flex items-center gap-2
-                    rounded-full px-8 py-3
-                    bg-indigo-600 text-white text-sm font-semibold
-                    shadow-[0_0_40px_rgba(99,102,241,0.45)]
-                    transition-all duration-300
-                    hover:bg-indigo-500  cursor-pointer  hover:shadow-[0_0_60px_rgba(99,102,241,0.7)]
-                "
+                      group inline-flex items-center gap-2
+                      rounded-full px-8 py-3
+                      bg-indigo-600 text-white text-sm font-semibold
+                      shadow-[0_0_40px_rgba(99,102,241,0.45)]
+                      transition-all duration-300
+                      hover:bg-indigo-500  cursor-pointer  hover:shadow-[0_0_60px_rgba(99,102,241,0.7)]
+                  "
             >
               Show More
               <ArrowDown className="h-4 w-4 transition group-hover:translate-y-1" />

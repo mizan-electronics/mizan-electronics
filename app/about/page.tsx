@@ -48,12 +48,12 @@ export default function AboutPage() {
 
       <div className="mx-auto max-w-7xl px-4 pt-24 pb-24">
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-          <div className="relative h-96 w-full">
+          <div className="relative h-100 w-full">
             <Image
               src="https://dynamic.brandcrowd.com/template/preview/design/1371c9b4-ef5f-4920-942f-a0e8f5ae90df/bf8c6aa2-3b7a-42f6-a237-ac6de260dfcd?v=4&designTemplateVersion=1&logoTemplateVersion=1&size=design-preview-wide-2x&layout=auto-1-1"
               alt="MIZAN ELECTRONICS Showroom"
               fill
-              className="object-cover  shadow rounded-full"
+              className="object-cover  shadow rounded-2xl"
             />
           </div>
 

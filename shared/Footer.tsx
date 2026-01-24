@@ -20,7 +20,7 @@ const Footer = () => {
         transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
       />
 
-      <div className="mx-auto max-w-7xl px-4 pb-12">
+      <div className="mx-auto max-w-7xl px-4 pb-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

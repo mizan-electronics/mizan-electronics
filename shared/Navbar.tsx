@@ -4,7 +4,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { HiOutlineHome, HiHome } from "react-icons/hi";
+import {
+  HiOutlineHome,
+  HiHome,
+  HiShoppingCart,
+  HiOutlineShoppingCart,
+} from "react-icons/hi";
 import { FiInfo, FiPhone } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import { BsBoxSeam, BsBoxSeamFill } from "react-icons/bs";
@@ -14,6 +19,7 @@ import { FaCircleExclamation } from "react-icons/fa6";
 import logo from "@/public/mizan.png";
 import ProfileImage from "./ProfileImage";
 import MobileBottomNav from "./MobileBottomNav";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 const Navbar = () => {
   const pathname = usePathname();
   const [dark, setDark] = useState(false);
@@ -42,18 +48,19 @@ const Navbar = () => {
                 width={48}
                 height={48}
               />
-              <span className=" font-extrabold tracking-wide bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              <span className="hidden sm:block font-extrabold tracking-wide bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 MIZAN ELECTRONICS
               </span>
             </div>
 
-            <nav className="hidden md:flex items-center gap-8 px-5">
+            <nav className="hidden md:flex items-center gap-6 px-5">
               <NavItem
                 href="/"
                 icon={pathname === "/" ? <HiHome /> : <HiOutlineHome />}
                 label="Home"
                 active={pathname === "/"}
               />
+
               <NavItem
                 href="/products"
                 icon={
@@ -62,6 +69,65 @@ const Navbar = () => {
                 label="Products"
                 active={pathname === "/products"}
               />
+
+              <NavItem
+                href="/wishlist"
+                icon={
+                  <div className="relative">
+                    {pathname === "/wishlist" ? (
+                      <AiFillHeart />
+                    ) : (
+                      <AiOutlineHeart />
+                    )}
+
+                    <span
+                      className="
+        absolute -top-1.5 -right-2
+        min-w-4 h-4
+        px-1
+        flex items-center justify-center
+        rounded-full
+        text-[10px] font-bold text-white
+        bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500
+      "
+                    >
+                      2
+                    </span>
+                  </div>
+                }
+                label="Wishlist"
+                active={pathname === "/wishlist"}
+              />
+
+              <NavItem
+                href="/cart"
+                icon={
+                  <div className="relative">
+                    {pathname === "/cart" ? (
+                      <HiShoppingCart />
+                    ) : (
+                      <HiOutlineShoppingCart />
+                    )}
+
+                    <span
+                      className="
+        absolute -top-1.5 -right-2
+        min-w-4 h-4
+        px-1
+        flex items-center justify-center
+        rounded-full
+        text-[10px] font-bold text-white
+        bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500
+      "
+                    >
+                      3
+                    </span>
+                  </div>
+                }
+                label="Cart"
+                active={pathname === "/cart"}
+              />
+
               <NavItem
                 href="/about"
                 icon={
@@ -70,6 +136,7 @@ const Navbar = () => {
                 label="About"
                 active={pathname === "/about"}
               />
+
               <NavItem
                 href="/contact"
                 icon={pathname === "/contact" ? <FaPhoneAlt /> : <FiPhone />}
